@@ -9,7 +9,7 @@ class HttpClientMock{
 }
 
 
-fdescribe('Group Service', () => {
+describe('Group Service', () => {
   let service: GroupService;
   let httpClientMock: HttpClientMock;
 
