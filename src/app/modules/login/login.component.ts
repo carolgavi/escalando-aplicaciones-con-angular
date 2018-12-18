@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   formModel: LoginFormModel;
   isLoading: boolean;
-  groups: [];
+  groups = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -36,11 +36,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.groupService
-        .getGroups()
-        .then((response: any) => {
-          this.groups = response.list;
-        });
+    this.route.data.subscribe((data: { groups: Group[]}) => {
+      this.groups = data.groups;
+    });
   }
   submit() {
     if (this.loginForm.valid) {
@@ -76,4 +74,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
+}
+
+
+interface Group {
+  id: string;
+  value: string;
+  active: boolean;
 }
